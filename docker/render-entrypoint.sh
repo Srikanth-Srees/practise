@@ -11,3 +11,5 @@ php-fpm -D
 # Replace nginx config template if you want to inject env values (not required now)
 # Start nginx in foreground
 nginx -g 'daemon off;'
+
+#fixed the issue with 502 bad gateway by adding php-fpm -D command to start php-fpm in background before starting nginx
