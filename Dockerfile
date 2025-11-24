@@ -8,9 +8,8 @@ RUN apt-get update \
     ca-certificates procps \
  && rm -rf /var/lib/apt/lists/*
 
-# Configure and install PHP extensions
-RUN docker-php-ext-configure zip --with-libzip \
- && docker-php-ext-install -j$(nproc) pdo pdo_mysql mbstring zip bcmath exif
+# Install PHP extensions (zip no longer needs --with-libzip)
+RUN docker-php-ext-install -j$(nproc) pdo pdo_mysql mbstring zip bcmath exif
 
 # Copy composer from official image
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -29,7 +28,7 @@ COPY . .
 # Ensure permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy nginx config template and entrypoint (added below)
+# Copy nginx config template and entrypoint
 COPY docker/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY docker/render-entrypoint.sh /usr/local/bin/render-entrypoint.sh
 RUN chmod +x /usr/local/bin/render-entrypoint.sh
