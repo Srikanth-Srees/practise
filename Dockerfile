@@ -34,7 +34,14 @@ RUN composer dump-autoload --optimize \
  && php artisan package:discover --ansi || true
 
 # Copy nginx config template and entrypoint
+# Add after installing nginx and before copying your config
 COPY docker/nginx/default.conf.template /etc/nginx/conf.d/default.conf
+
+# NEW: Disable default site and ensure your config takes precedence
+RUN rm -f /etc/nginx/sites-enabled/default \
+ && ln -sf /etc/nginx/conf.d/default.conf /etc/nginx/sites-enabled/laravel.conf \
+ && chown -R www-data:www-data /var/www/html
+
 COPY docker/render-entrypoint.sh /usr/local/bin/render-entrypoint.sh
 RUN chmod +x /usr/local/bin/render-entrypoint.sh
 
