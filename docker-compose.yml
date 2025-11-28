@@ -27,8 +27,8 @@ services:
       - "9000:80" # Access nginx at localhost:9000
     # Mount app code read-only for nginx (safer) and use custom nginx config
     volumes:
-      - ./:/var/www/html:ro
-      - ./docker/nginx/default.conf.template:/etc/nginx/conf.d/default.conf:ro
+    - ./:/var/www/html:ro
+    - ./docker/nginx/docker-compose.conf:/etc/nginx/conf.d/default.conf:ro  # NEW 
     depends_on:
       - app
     # Note: depends_on only controls start ordering (not readiness). Consider healthchecks if you need nginx to wait until php-fpm is listening.
