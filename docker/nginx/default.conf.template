@@ -12,10 +12,11 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass app:9000;  # Use service name:port (NOT socket)
+        fastcgi_pass unix:/run/php/php-fpm.sock;  # ← SOCKET for single container
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
     }
 
     location ~ /\.(?!well-known).* {

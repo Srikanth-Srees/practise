@@ -22,9 +22,9 @@ services:
   nginx:
     image: nginx:stable
     container_name: nginx_laravel
-    # Map host port 9000 to container port 80 (so you'll open http://localhost:9000)
+    # Map host port 8000 to container port 80 (so you'll open http://localhost:8000)
     ports:
-      - "9000:80" # Access nginx at localhost:9000
+      - "8000:80" # Access nginx at localhost:8000
     # Mount app code read-only for nginx (safer) and use custom nginx config
     volumes:
     - ./:/var/www/html:ro
