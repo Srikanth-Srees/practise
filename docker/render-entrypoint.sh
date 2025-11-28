@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 set -e
 
-# Ensure storage directories exist with correct permissions
-mkdir -p storage bootstrap/cache
-chown -R www-data:www-data storage bootstrap/cache
+# Create missing framework subdirs at runtime too
+mkdir -p /var/www/html/storage/framework/{cache,sessions,views} \
+         /var/www/html/storage/logs \
+         /var/www/html/storage/app \
+         /var/www/html/bootstrap/cache
 
-# Start php-fpm in background
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 php-fpm -D
 
-# Replace nginx config template if you want to inject env values (not required now)
-# Start nginx in foreground
-nginx -g 'daemon off;'
+# Wait for PHP-FPM socket
+sleep 3
 
-#fixed the issue with 502 bad gateway by adding php-fpm -D command to start php-fpm in background before starting nginx
+# Clear Laravel caches
+su www-data -s /bin/bash -c "cd /var/www/html && php artisan cache:clear config:clear view:clear route:clear 2>/dev/null || true"
+
+nginx -g 'daemon off;'
