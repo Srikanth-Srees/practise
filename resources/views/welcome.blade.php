@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Deployment Status</title>
 
     <style>
         body {
@@ -15,7 +15,7 @@
         }
 
         header {
-            background: #4a90e2;
+            background: #4CAF50;
             padding: 20px;
             text-align: center;
             color: white;
@@ -33,17 +33,27 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        .container h2 {
-            color: #4a90e2;
+        .success-box {
+            padding: 20px;
+            background: #e8f6ec;
+            border-left: 6px solid #4CAF50;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .success-box h2 {
+            color: #2e7d32;
+            margin-top: 0;
         }
 
         .btn {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 22px;
-            background: #4a90e2;
+            background: #4CAF50;
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -51,7 +61,7 @@
         }
 
         .btn:hover {
-            background: #3a7acb;
+            background: #429d46;
         }
 
         footer {
@@ -66,30 +76,21 @@
 <body>
 
     <header>
-        <h1>Welcome to My Webpage</h1>
-        <p>Your clean, modern, and simple HTML layout</p>
+        <h1>Deployment Status</h1>
+        <p>Your system is now up and running smoothly</p>
     </header>
 
     <div class="container">
-        <h2>About This Page</h2>
-        <p>
-            This webpage is designed with a clean layout, soft colors, and simple structure.  
-            You can freely modify it and add your own sections like services, contact details, or forms.
-        </p>
+        <div class="success-box">
+            <h2>🎉 Deployment Happened Successfully!</h2>
+            <p>Your application has been deployed without any errors.</p>
+        </div>
 
-        <h2>Features</h2>
-        <ul>
-            <li>Fully responsive layout</li>
-            <li>Modern card-style container</li>
-            <li>Elegant header and footer</li>
-            <li>No external libraries required</li>
-        </ul>
-
-        <a href="#" class="btn">Learn More</a>
+        <a href="#" class="btn">Go to Dashboard</a>
     </div>
 
     <footer>
-        © 2025 Your Website. All rights reserved.
+        © 2025 Deployment System. All rights reserved.
     </footer>
 
 </body>
