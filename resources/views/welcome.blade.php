@@ -86,7 +86,7 @@
             <p>Your application has been deployed without any errors.</p>
         </div>
 
-        <a href="#" class="btn">Go to Dashboard</a>
+        <a href="#" class="btn">Shiva</a>
     </div>
 
     <footer>
